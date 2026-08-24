@@ -1,29 +1,36 @@
 "use client";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import Link from "next/link";
 import { Package, Eye, EyeOff } from "lucide-react";
 import { STORE_NAME } from "@/lib/constants";
+import { login } from "@/app/actions/auth";
 
 interface LoginFormProps {
   onLogin: () => void;
 }
 
-const ADMIN_PASSWORD = "sahoo123";
-
 export default function LoginForm({ onLogin }: LoginFormProps) {
   const [password, setPassword]   = useState("");
   const [showPass, setShowPass]   = useState(false);
   const [error, setError]         = useState("");
+  const [isPending, startTransition] = useTransition();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      try { localStorage.setItem("siyaram_admin", "true"); } catch {}
-      onLogin();
-    } else {
-      setError("Wrong password. Please try again.");
-      setPassword("");
+    if (!password) {
+      setError("Please enter a password.");
+      return;
     }
+    
+    startTransition(async () => {
+      const success = await login(password);
+      if (success) {
+        onLogin();
+      } else {
+        setError("Wrong password. Please try again.");
+        setPassword("");
+      }
+    });
   }
 
   return (
@@ -68,9 +75,10 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
 
           <button
             type="submit"
-            style={{ padding: "14px", borderRadius: "10px", background: "#ea6c00", color: "#fff", border: "none", fontWeight: 700, fontSize: "16px", cursor: "pointer" }}
+            disabled={isPending}
+            style={{ padding: "14px", borderRadius: "10px", background: isPending ? "#fcd34d" : "#ea6c00", color: isPending ? "#0f2557" : "#fff", border: "none", fontWeight: 700, fontSize: "16px", cursor: isPending ? "not-allowed" : "pointer" }}
           >
-            Login →
+            {isPending ? "Logging in..." : "Login →"}
           </button>
         </form>
 
