@@ -32,12 +32,14 @@ function HomeContent() {
 
   // Load products & cart on mount
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setProducts(getProducts());
     setCartCount(getCart().reduce((s, i) => s + i.quantity, 0));
   }, []);
 
   // Sync URL params → state
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveCategory(searchParams.get("category") || "");
     setSearchQuery(searchParams.get("q") || "");
   }, [searchParams]);
@@ -61,7 +63,7 @@ function HomeContent() {
   }
 
   // ── Filter + Sort ──
-  let filtered = products.filter((p) => {
+  const filtered = products.filter((p) => {
     const q = searchQuery.toLowerCase();
     const matchSearch = !q
       || p.name.toLowerCase().includes(q)

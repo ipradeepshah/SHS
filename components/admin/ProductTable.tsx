@@ -14,7 +14,7 @@ export default function ProductTable({ products, onEdit, onDelete }: ProductTabl
       <div style={{ textAlign: "center", padding: "80px 0", color: "#9ca3af" }}>
         <div style={{ fontSize: "60px", marginBottom: "14px" }}>📦</div>
         <p style={{ fontSize: "18px", fontWeight: 600, marginBottom: "6px" }}>No products found</p>
-        <p style={{ fontSize: "13px" }}>Add your first product using the "Add Product" button above</p>
+        <p style={{ fontSize: "13px" }}>Add your first product using the &quot;Add Product&quot; button above</p>
       </div>
     );
   }

@@ -478,7 +478,7 @@ export default function CEOPage() {
         <p style={{ margin: "6px 0 0" }}>
           <Link href="/" style={{ color: "#93c5fd", textDecoration: "none" }}>Home</Link>
           &nbsp;·&nbsp;
-          <a href={CEO_PERSONAL_SITE} target="_blank" rel="noopener noreferrer" style={{ color: "#93c5fd", textDecoration: "none" }}>Pradeep's Personal Site</a>
+          <a href={CEO_PERSONAL_SITE} target="_blank" rel="noopener noreferrer" style={{ color: "#93c5fd", textDecoration: "none" }}>Pradeep&apos;s Personal Site</a>
           &nbsp;·&nbsp;
           <a href={`tel:${STORE_PHONE_RAW}`} style={{ color: "#93c5fd", textDecoration: "none" }}>{STORE_PHONE}</a>
         </p>

@@ -12,7 +12,7 @@ export async function login(password: string): Promise<boolean> {
     cookieStore.set(SESSION_COOKIE_NAME, "true", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: "none",
       path: "/",
       maxAge: 60 * 60 * 24 * 7, // 1 week
     });

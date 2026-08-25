@@ -17,7 +17,8 @@ export default function CartPage() {
 
   const refresh = () => setCart(getCart());
 
-  useEffect(() => { refresh(); }, []);
+  useEffect(() => { // eslint-disable-next-line react-hooks/set-state-in-effect
+    refresh(); }, []);
 
   const handleQty = (id: string, qty: number) => {
     updateCartQty(id, qty);

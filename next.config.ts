@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  transpilePackages: ["lucide-react"],
   // Allows access from any local network IP (192.168.x.x, 10.x.x.x etc.)
   // This fixes the "Blocked cross-origin request" warning when opening
   // the site from http://192.168.x.x:3000 instead of localhost
