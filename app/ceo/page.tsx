@@ -288,7 +288,7 @@ export default function CEOPage() {
             <p style={{ color: "#4b5563", fontSize: "15px", lineHeight: 1.8, margin: 0 }}>
               Returning to {STORE_CITY}, Nepal after his engineering studies, Pradeep took the helm of{" "}
               <strong>{STORE_NAME}</strong>, focusing on combining operational excellence with modern
-              technology. His engineering background gives him a unique edge — he doesn't just identify
+              technology. His engineering background gives him a unique edge — he doesn&apos;t just identify
               business problems, he architects solutions to solve them. Read his full story on his{" "}
               <a href={`${CEO_PERSONAL_SITE}/about`} target="_blank" rel="noopener noreferrer" style={{ color: "#ea6c00", fontWeight: 600 }}>
                 personal website

@@ -14,7 +14,7 @@ import Toast         from "@/components/Toast";
 
 // ── Data / Types ──
 import { Product }              from "@/lib/types";
-import { getProducts, getCart, addToCart } from "@/lib/storage";
+import { fetchProducts, getCart, addToCart } from "@/lib/storage";
 
 // ─────────────────────────────────────────────
 function HomeContent() {
@@ -32,8 +32,11 @@ function HomeContent() {
 
   // Load products & cart on mount
   useEffect(() => {
+    fetchProducts().then((data) => {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setProducts(data);
+    });
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setProducts(getProducts());
     setCartCount(getCart().reduce((s, i) => s + i.quantity, 0));
   }, []);
 
@@ -52,6 +55,7 @@ function HomeContent() {
 
   function handleAddToCart(product: Product) {
     addToCart(product);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCartCount(getCart().reduce((s, i) => s + i.quantity, 0));
     setToast(`${product.name} added to cart!`);
   }

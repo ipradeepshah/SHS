@@ -168,7 +168,7 @@ export default function CartPage() {
               <MessageCircle size={20} /> Order via WhatsApp
             </button>
             <p style={{ textAlign: "center", fontSize: "12px", color: "#9ca3af", marginTop: "8px" }}>
-              We'll confirm your order on WhatsApp
+              We&apos;ll confirm your order on WhatsApp
             </p>
           </div>
         </div>

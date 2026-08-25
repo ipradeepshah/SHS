@@ -14,7 +14,7 @@ import Toast             from "@/components/Toast";
 
 // ── Data / Types ──
 import { Product, CATEGORIES } from "@/lib/types";
-import { getProducts, addProduct, updateProduct, deleteProduct } from "@/lib/storage";
+import { fetchProducts, createProduct, updateProductAPI, deleteProductAPI } from "@/lib/storage";
 import { logout, checkAuth } from "@/app/actions/auth";
 
 // ─────────────────────────────────────────────
@@ -43,14 +43,13 @@ export default function AdminPage() {
   useEffect(() => {
     checkAuth().then((isAuth) => {
       if (isAuth) {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setLoggedIn(true);
-        setProducts(getProducts());
+        fetchProducts().then(setProducts);
       }
     });
   }, []);
 
-  const refresh = () => setProducts(getProducts());
+  const refresh = () => fetchProducts().then(setProducts);
 
   /* ── Auth handlers ── */
   function handleLogin() {
@@ -84,13 +83,21 @@ export default function AdminPage() {
     setShowForm(true);
   }
 
-  function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
     if (file.size > 2 * 1024 * 1024) { setFormError("Image must be under 2MB"); return; }
-    const reader = new FileReader();
-    reader.onload = () => setForm((f) => ({ ...f, image: reader.result as string }));
-    reader.readAsDataURL(file);
+    
+    const formData = new FormData();
+    formData.append("file", file);
+    try {
+      const res = await fetch("/api/upload", { method: "POST", body: formData });
+      if (!res.ok) throw new Error("Upload failed");
+      const { url } = await res.json();
+      setForm((f) => ({ ...f, image: url }));
+    } catch (err) {
+      setFormError("Failed to upload image");
+    }
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -113,24 +120,28 @@ export default function AdminPage() {
     };
 
     if (editingId) {
-      updateProduct(editingId, data);
-      setToast("Product updated successfully!");
+      updateProductAPI(editingId, data).then(() => {
+        setToast("Product updated successfully!");
+        refresh();
+      });
     } else {
-      addProduct(data);
-      setToast("Product added successfully!");
+      createProduct(data).then(() => {
+        setToast("Product added successfully!");
+        refresh();
+      });
     }
     setShowForm(false);
     setEditingId(null);
     setForm({ ...EMPTY_FORM });
     setFormError("");
-    refresh();
   }
 
   function handleDelete(id: string) {
-    deleteProduct(id);
-    setDeleteId(null);
-    setToast("Product deleted");
-    refresh();
+    deleteProductAPI(id).then(() => {
+      setDeleteId(null);
+      setToast("Product deleted");
+      refresh();
+    });
   }
 
   /* ── Filtered products ── */
