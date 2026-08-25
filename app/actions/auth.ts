@@ -5,7 +5,8 @@ import { cookies } from "next/headers";
 const SESSION_COOKIE_NAME = "siyaram_admin_session";
 
 export async function login(password: string): Promise<boolean> {
-  const adminPassword = process.env.ADMIN_PASSWORD || "sahoo123";
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  if (!adminPassword) { console.error("ADMIN_PASSWORD environment variable is not set."); return false; }
 
   if (password === adminPassword) {
     const cookieStore = await cookies();

@@ -15,7 +15,7 @@ import Toast             from "@/components/Toast";
 // ── Data / Types ──
 import { Product, CATEGORIES } from "@/lib/types";
 import { getProducts, addProduct, updateProduct, deleteProduct } from "@/lib/storage";
-import { logout } from "@/app/actions/auth";
+import { logout, checkAuth } from "@/app/actions/auth";
 
 // ─────────────────────────────────────────────
 export default function AdminPage() {
@@ -41,32 +41,24 @@ export default function AdminPage() {
 
   // Check auth on mount
   useEffect(() => {
-    try {
-      if (localStorage.getItem("siyaram_admin") === "true") {
+    checkAuth().then((isAuth) => {
+      if (isAuth) {
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setLoggedIn(true);
         setProducts(getProducts());
       }
-    } catch (error) {
-      console.error("Local storage error:", error);
-    }
+    });
   }, []);
 
   const refresh = () => setProducts(getProducts());
 
   /* ── Auth handlers ── */
   function handleLogin() {
-    try {
-      localStorage.setItem("siyaram_admin", "true");
-    } catch {}
     setLoggedIn(true);
     refresh();
   }
 
   async function handleLogout() {
-    try {
-      localStorage.removeItem("siyaram_admin");
-    } catch {}
     await logout();
     setLoggedIn(false);
   }
