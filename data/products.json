@@ -19,25 +19,6 @@
     "updatedAt": "2026-08-27T11:34:28.178Z"
   },
   {
-    "id": "2",
-    "name": "UPVC Pipe 1 inch - 6 Metre",
-    "description": "Durable UPVC pipe for plumbing and water supply. Pressure rated, lightweight and easy to install.",
-    "price": 210,
-    "mrp": 260,
-    "category": "Pipes & Fittings",
-    "brand": "Supreme",
-    "unit": "Piece",
-    "stock": 80,
-    "image": "",
-    "tags": [
-      "pipe",
-      "upvc",
-      "water supply"
-    ],
-    "createdAt": "2026-08-25T16:30:58.418Z",
-    "updatedAt": "2026-08-25T16:30:58.418Z"
-  },
-  {
     "id": "3",
     "name": "Asian Paints Wood Primer",
     "description": "Ready-to-use wood primer for interior and exterior wooden surfaces. Prevents moisture and provides excellent adhesion.",
@@ -150,5 +131,22 @@
     ],
     "createdAt": "2026-08-25T16:30:58.418Z",
     "updatedAt": "2026-08-25T16:30:58.418Z"
+  },
+  {
+    "name": "110 mm PVC pipe 4kg pressure Apex",
+    "description": "High-quality Apex PVC pressure pipe with a 110 mm diameter and 4 KG pressure rating. Designed for reliable water supply and plumbing applications. Durable, corrosion-resistant, lightweight, and easy to install, making it suitable for residential, commercial, and agricultural use.\n\nKey Features:\n\n• Brand: Apex\n• Size: 110 mm (4 inch)\n• Pressure Rating: 4 KG\n• Material: High-quality PVC\n• Strong and durable\n• Corrosion and rust resistant\n• Smooth inner surface for efficient water flow\n• Suitable for water supply and plumbing applications",
+    "price": 445,
+    "mrp": 500,
+    "category": "Plumbing",
+    "brand": "Apex",
+    "unit": "Piece",
+    "stock": 196,
+    "image": "/uploads/1787832611526-6m2rve.jpeg",
+    "tags": [
+      "PVC Pipe"
+    ],
+    "id": "1787832866442",
+    "createdAt": "2026-08-27T12:14:26.442Z",
+    "updatedAt": "2026-08-27T12:14:26.442Z"
   }
 ]
