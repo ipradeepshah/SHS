@@ -174,7 +174,7 @@ export default function CEOPage() {
   ];
 
   return (
-    <div style={S.page}>
+    <main style={S.page} itemScope itemType="https://schema.org/Person">
 
       {/* ── JSON-LD ── */}
       <script
@@ -199,8 +199,10 @@ export default function CEOPage() {
 
           {/* Avatar */}
           <div style={{ flexShrink: 0 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-  src="/pradeep-shah.jpg"
+              itemProp="image"
+              src="/pradeep-shah.jpg"
   alt="Pradeep Shah — CEO of Siyaram Hardware & Suppliers"
   style={{
     width: "140px",
@@ -216,43 +218,43 @@ export default function CEOPage() {
 
           {/* Info */}
           <div style={{ flex: 1, minWidth: "260px" }}>
-            <p style={{ color: "#fb923c", fontSize: "13px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 8px" }}>
+            <p itemProp="jobTitle" style={{ color: "#fb923c", fontSize: "13px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 8px" }}>
               CEO · Founder · Computer Engineer
             </p>
-            <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, color: "#fff", margin: "0 0 6px", lineHeight: 1.1 }}>
+            <h1 itemProp="name" style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, color: "#fff", margin: "0 0 6px", lineHeight: 1.1 }}>
               {CEO_NAME}
             </h1>
-            <p style={{ color: "#93c5fd", fontSize: "16px", margin: "0 0 20px" }}>
-              {STORE_NAME} · {STORE_ADDRESS}
+            <p style={{ color: "#93c5fd", fontSize: "16px", margin: "0 0 20px" }} itemProp="worksFor" itemScope itemType="https://schema.org/Organization">
+              <span itemProp="name">{STORE_NAME}</span> · {STORE_ADDRESS}
             </p>
 
             {/* Social links — verified profiles */}
             <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-              <a href={CEO_PERSONAL_SITE} target="_blank" rel="noopener noreferrer me"
+              <a href={CEO_PERSONAL_SITE} itemProp="sameAs" target="_blank" rel="noopener noreferrer me"
                 style={{ ...S.socialBtn, background: "#ea6c00", color: "#fff" }}>
                 🌐 Personal Website
               </a>
-              <a href={CEO_SOCIALS.linkedin} target="_blank" rel="noopener noreferrer me"
+              <a href={CEO_SOCIALS.linkedin} itemProp="sameAs" target="_blank" rel="noopener noreferrer me"
                 style={{ ...S.socialBtn, background: "#0A66C2", color: "#fff" }}>
                 in LinkedIn
               </a>
-              <a href={CEO_SOCIALS.twitter} target="_blank" rel="noopener noreferrer me"
+              <a href={CEO_SOCIALS.twitter} itemProp="sameAs" target="_blank" rel="noopener noreferrer me"
                 style={{ ...S.socialBtn, background: "#000", color: "#fff" }}>
                 𝕏 Twitter
               </a>
-              <a href={CEO_SOCIALS.instagram} target="_blank" rel="noopener noreferrer me"
+              <a href={CEO_SOCIALS.instagram} itemProp="sameAs" target="_blank" rel="noopener noreferrer me"
                 style={{ ...S.socialBtn, background: "linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)", color: "#fff" }}>
                 📸 Instagram
               </a>
-              <a href={CEO_SOCIALS.facebook} target="_blank" rel="noopener noreferrer me"
+              <a href={CEO_SOCIALS.facebook} itemProp="sameAs" target="_blank" rel="noopener noreferrer me"
                 style={{ ...S.socialBtn, background: "#1877F2", color: "#fff" }}>
                 f Facebook
               </a>
-              <a href={CEO_SOCIALS.tiktok} target="_blank" rel="noopener noreferrer me"
+              <a href={CEO_SOCIALS.tiktok} itemProp="sameAs" target="_blank" rel="noopener noreferrer me"
                 style={{ ...S.socialBtn, background: "#000", color: "#fff" }}>
                 🎵 TikTok
               </a>
-              <a href={CEO_SOCIALS.github} target="_blank" rel="noopener noreferrer me"
+              <a href={CEO_SOCIALS.github} itemProp="sameAs" target="_blank" rel="noopener noreferrer me"
                 style={{ ...S.socialBtn, background: "#24292e", color: "#fff" }}>
                 💻 GitHub
               </a>
@@ -275,7 +277,7 @@ export default function CEOPage() {
         <div style={{ paddingTop: "36px", display: "grid", gap: "24px" }}>
 
           {/* About */}
-          <article style={S.card} itemScope itemType="https://schema.org/Person">
+          <article style={S.card}>
             <meta itemProp="name"     content={CEO_NAME} />
             <meta itemProp="jobTitle" content={CEO_TITLE} />
             <meta itemProp="url"      content={CEO_PERSONAL_SITE} />
@@ -483,6 +485,6 @@ export default function CEOPage() {
           <a href={`tel:${STORE_PHONE_RAW}`} style={{ color: "#93c5fd", textDecoration: "none" }}>{STORE_PHONE}</a>
         </p>
       </div>
-    </div>
+    </main>
   );
 }

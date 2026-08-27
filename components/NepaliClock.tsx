@@ -1,11 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import NepaliDate from "nepali-date-converter";
+import NepaliDateModule from "nepali-date-converter";
+const NepaliDate = typeof NepaliDateModule === "function" ? NepaliDateModule : (NepaliDateModule as { default: unknown }).default as typeof NepaliDateModule;
 
 // Nepal Standard Time offset from UTC: +5:45
 const NPT_OFFSET_MIN = 5 * 60 + 45;
 
-export default function NepaliClock() {
+console.log("NepaliDate from import:", typeof NepaliDate); export default function NepaliClock() {
   const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
