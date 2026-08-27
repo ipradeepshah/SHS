@@ -1,22 +1,22 @@
 [
   {
     "id": "1",
-    "name": "CPVC Ball Valve 1/2 inch",
+    "name": "CPVC Ball Valve 3/4 inch",
     "description": "High quality CPVC ball valve suitable for hot and cold water supply systems. Corrosion resistant and durable.",
-    "price": 85,
-    "mrp": 110,
+    "price": 220,
+    "mrp": 300,
     "category": "Valves & Taps",
-    "brand": "Astral",
+    "brand": "Marcos",
     "unit": "Piece",
-    "stock": 150,
-    "image": "",
+    "stock": 30,
+    "image": "/uploads/1787830286788-c68qvus.jpg",
     "tags": [
       "valve",
       "cpvc",
       "plumbing"
     ],
     "createdAt": "2026-08-25T16:30:58.418Z",
-    "updatedAt": "2026-08-25T16:30:58.418Z"
+    "updatedAt": "2026-08-27T11:34:28.178Z"
   },
   {
     "id": "2",
