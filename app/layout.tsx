@@ -11,6 +11,7 @@ import {
 
 // ── Global Metadata (Next.js SEO API) ──────────────────────────
 export const metadata: Metadata = {
+  verification: { google: "PYA2d_AJfPtC-AafEyM7K9_LQiQYjLeYNb14FKg-jWU" },
   metadataBase: new URL(SITE_URL),
 
   title: {
