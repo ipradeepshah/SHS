@@ -31,7 +31,12 @@ export default function Footer() {
 
         {/* Brand */}
         <div>
-          <img src="/logo.png" alt="Siyaram Hardware Logo" style={{ height: "48px", width: "auto", objectFit: "contain", marginBottom: "16px" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+            <img src="/logo.png" alt="Siyaram Hardware Logo" style={{ height: "48px", width: "auto", objectFit: "contain" }} />
+            <h3 style={{ color: "#FF6B00", fontWeight: 800, fontSize: "18px", margin: 0 }}>
+              {STORE_NAME}
+            </h3>
+          </div>
           <p style={{ color: "#93c5fd", fontSize: "14px", lineHeight: 1.7, marginBottom: "16px" }}>
             Your trusted hardware partner for plumbing, paints, tools and all construction needs.
           </p>
@@ -118,7 +123,7 @@ export default function Footer() {
         <p style={{ color: "#64748b", fontSize: "12px", margin: 0 }}>
           © {new Date().getFullYear()} {STORE_NAME}. All rights reserved.
         </p>
-        <Link href="/admin" style={{ color: "#475569", fontSize: "12px", textDecoration: "none" }}>
+        <Link href="/admin" style={{ color: "#bfdbfe", fontSize: "12px", textDecoration: "none" }}>
           Admin Portal
         </Link>
       </div>

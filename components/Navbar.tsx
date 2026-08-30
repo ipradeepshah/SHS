@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { getCart } from "@/lib/storage";
-import { ShoppingCart, Search, Menu, X, Wrench, Phone } from "lucide-react";
+import { ShoppingCart, Search, Wrench, Phone } from "lucide-react";
 import { STORE_NAME, STORE_PHONE, STORE_PHONE_RAW } from "@/lib/constants";
 import { CATEGORIES } from "@/lib/types";
 import NepaliClock from "@/components/NepaliClock";
@@ -14,7 +14,6 @@ interface NavbarProps {
 }
 
 export default function Navbar({ cartCount: initialCartCount = 0, onSearch, searchValue = "" }: NavbarProps) {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(initialCartCount);
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -45,18 +44,31 @@ export default function Navbar({ cartCount: initialCartCount = 0, onSearch, sear
       </div>
 
       {/* ── Main bar ── */}
-      <div style={{ background: "#002D5A", padding: "12px 16px", display: "flex", alignItems: "center", gap: "16px" }}>
+      <div className="flex flex-wrap items-center justify-between gap-y-4" style={{ background: "#002D5A", padding: "12px 16px", gap: "16px" }}>
 
         {/* Logo */}
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0 }}>
           <img src="/logo.png" alt="Siyaram Hardware Logo" style={{ height: "48px", width: "auto", objectFit: "contain" }} />
         </Link>
 
-        {/* Search — centered & wide */}
+        {/* Right actions (mobile friendly order) */}
+        <div className="flex items-center gap-4 shrink-0 sm:order-last">
+          <Link href="/cart" style={{ position: "relative", color: "#fff", textDecoration: "none", display: "flex", alignItems: "center", gap: "5px", fontSize: "14px" }}>
+            <ShoppingCart size={22} />
+            {cartCount > 0 && (
+              <span style={{ position: "absolute", top: "-8px", right: "-8px", background: "#FF6B00", color: "#fff", borderRadius: "50%", width: "18px", height: "18px", fontSize: "10px", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {cartCount > 99 ? "99+" : cartCount}
+              </span>
+            )}
+            <span style={{ display: "none" }}>Cart</span>
+          </Link>
+        </div>
+
+        {/* Search — full width on mobile, inline on desktop */}
         <form
           onSubmit={handleSearch}
+          className="w-full sm:w-auto sm:flex-1 order-last sm:order-none"
           style={{
-            flex: 1,
             display: "flex",
             justifyContent: "center",
           }}
@@ -83,59 +95,23 @@ export default function Navbar({ cartCount: initialCartCount = 0, onSearch, sear
           </div>
         </form>
 
-        {/* Right actions */}
-        <div style={{ display: "flex", alignItems: "center", gap: "14px", flexShrink: 0 }}>
-          <Link href="/cart" style={{ position: "relative", color: "#fff", textDecoration: "none", display: "flex", alignItems: "center", gap: "5px", fontSize: "14px" }}>
-            <ShoppingCart size={22} />
-            {cartCount > 0 && (
-              <span style={{ position: "absolute", top: "-8px", right: "-8px", background: "#FF6B00", color: "#fff", borderRadius: "50%", width: "18px", height: "18px", fontSize: "10px", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                {cartCount > 99 ? "99+" : cartCount}
-              </span>
-            )}
-            <span style={{ display: "none" }}>Cart</span>
-          </Link>
-          <Link href="/ceo" style={{ color: "#fb923c", fontSize: "12px", padding: "5px 0", textDecoration: "none", fontWeight: 600 }}>
-            CEO
-          </Link>
-          <Link href="/admin" style={{ color: "#bfdbfe", fontSize: "12px", border: "1px solid rgba(255,255,255,0.25)", padding: "5px 12px", borderRadius: "6px", textDecoration: "none" }}>
-            Admin
-          </Link>
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "none", color: "#fff", cursor: "pointer", padding: 0 }}>
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
       </div>
 
       {/* ── Category strip ── */}
-      <div style={{ background: "#003B73", padding: "6px 16px", display: "flex", gap: "4px", overflowX: "auto" }}>
+      <div className="flex flex-wrap gap-2 px-4 py-2" style={{ background: "#003B73" }}>
         {CATEGORIES.map((cat) => (
           <Link
             key={cat}
             href={`/?category=${encodeURIComponent(cat)}`}
-            style={{ whiteSpace: "nowrap", fontSize: "12px", color: "#bfdbfe", padding: "4px 12px", borderRadius: "20px", textDecoration: "none" }}
-            onMouseEnter={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.12)"; (e.target as HTMLElement).style.color = "#fff"; }}
-            onMouseLeave={(e) => { (e.target as HTMLElement).style.background = "transparent"; (e.target as HTMLElement).style.color = "#bfdbfe"; }}
+            style={{ fontSize: "12px", color: "#bfdbfe", padding: "6px 12px", borderRadius: "20px", textDecoration: "none", background: "rgba(255,255,255,0.05)" }}
+            onMouseEnter={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.15)"; (e.target as HTMLElement).style.color = "#fff"; }}
+            onMouseLeave={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.05)"; (e.target as HTMLElement).style.color = "#bfdbfe"; }}
           >
             {cat}
           </Link>
         ))}
       </div>
 
-      {/* ── Mobile menu ── */}
-      {menuOpen && (
-        <div style={{ background: "#002D5A", padding: "12px 20px 20px", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-            {CATEGORIES.map((cat) => (
-              <Link key={cat} href={`/?category=${encodeURIComponent(cat)}`} style={{ color: "#bfdbfe", fontSize: "14px", textDecoration: "none", padding: "6px 0" }} onClick={() => setMenuOpen(false)}>
-                {cat}
-              </Link>
-            ))}
-            <Link href="/admin" style={{ color: "#fb923c", fontSize: "14px", textDecoration: "none", padding: "10px 0", borderTop: "1px solid rgba(255,255,255,0.1)", marginTop: "6px" }} onClick={() => setMenuOpen(false)}>
-              Admin Portal →
-            </Link>
-          </div>
-        </div>
-      )}
     </header>
   );
 }
