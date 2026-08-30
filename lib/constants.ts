@@ -19,7 +19,7 @@ export const STORE_PHONE      = "+977 9815256619";
 export const STORE_PHONE_RAW  = "9779815256619";  // for wa.me / tel: links
 export const STORE_HOURS      = "Mon–Sat: 8am – 8pm";
 export const STORE_HOURS_SCHEMA = "Mo-Sa 08:00-20:00";
-export const STORE_EMAIL      = "ipradeepshah@gmail.com";
+export const STORE_EMAIL      = "siyaramhardwaresuppliers@gmail.com";
 
 // ── CEO / Founder ────────────────────────────────────────────
 export const CEO_NAME         = "Pradeep Shah";

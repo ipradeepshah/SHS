@@ -27,12 +27,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority       : 0.9,
     },
     {
-      url            : `${SITE_URL}/cart`,
-      lastModified   : now,
-      changeFrequency: "weekly",
-      priority       : 0.5,
-    },
-    {
       url            : `${SITE_URL}/?category=Plumbing`,
       lastModified   : now,
       changeFrequency: "weekly",

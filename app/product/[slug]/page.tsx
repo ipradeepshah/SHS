@@ -6,6 +6,7 @@ import { SITE_URL, STORE_NAME } from "@/lib/constants";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AddToCartClient from "./AddToCartClient";
+import ShareButtons from "./ShareButtons";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -162,6 +163,9 @@ export default async function ProductPage({ params }: Props) {
                 ))}
               </div>
             </div>
+
+            {/* Share Buttons */}
+            <ShareButtons url={productUrl} title={product.name} />
 
           </div>
         </div>
