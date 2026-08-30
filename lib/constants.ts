@@ -72,7 +72,7 @@ export const STORE_SOCIALS = {
 };
 
 // ── Website / SEO ────────────────────────────────────────────
-export const SITE_URL         = "https://siyaramhardware.com";   // ← update when you get a domain
+export const SITE_URL         = "https://siyaramhardware.com.np";   // ← update when you get a domain
 export const SITE_DESCRIPTION = "Siyaram Hardware & Suppliers at Nagawa Chowk, Birgunj, Nepal — your trusted source for plumbing, pipes, valves, wood & iron paints, tools and general hardware. Founded and led by Pradeep Shah, Computer Engineer and CEO.";
 export const SITE_KEYWORDS    = [
   "Siyaram Hardware Birgunj",
