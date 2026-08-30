@@ -8,7 +8,6 @@ import HeroBanner    from "@/components/HeroBanner";
 import CategoryGrid  from "@/components/CategoryGrid";
 import FilterBar     from "@/components/FilterBar";
 import ProductCard   from "@/components/ProductCard";
-import ProductModal  from "@/components/ProductModal";
 import Footer        from "@/components/Footer";
 import Toast         from "@/components/Toast";
 
@@ -23,7 +22,7 @@ function HomeContent() {
 
   const [products, setProducts]           = useState<Product[]>([]);
   const [cartCount, setCartCount]         = useState(0);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  
   const [toast, setToast]                 = useState("");
   const [searchQuery, setSearchQuery]     = useState(searchParams.get("q") || "");
   const [activeCategory, setActiveCategory] = useState(searchParams.get("category") || "");
@@ -140,7 +139,7 @@ function HomeContent() {
                 key={product.id}
                 product={product}
                 onAddToCart={handleAddToCart}
-                onView={setSelectedProduct}
+                
               />
             ))}
           </div>
@@ -150,14 +149,6 @@ function HomeContent() {
       {/* ── Footer ── */}
       <Footer />
 
-      {/* ── Overlays ── */}
-      {selectedProduct && (
-        <ProductModal
-          product={selectedProduct}
-          onClose={() => setSelectedProduct(null)}
-          onAddToCart={handleAddToCart}
-        />
-      )}
       {toast && <Toast message={toast} onClose={() => setToast("")} />}
     </div>
   );

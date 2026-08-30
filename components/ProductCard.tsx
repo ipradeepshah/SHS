@@ -1,22 +1,25 @@
 "use client";
 import { Product } from "@/lib/types";
 import { ShoppingCart, Package } from "lucide-react";
+import Link from "next/link";
+import { generateSlug } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
   onAddToCart: (product: Product) => void;
-  onView: (product: Product) => void;
+
 }
 
-export default function ProductCard({ product, onAddToCart, onView }: ProductCardProps) {
+export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const discount = product.mrp > product.price
     ? Math.round(((product.mrp - product.price) / product.mrp) * 100)
     : 0;
 
   return (
-    <div
+    <Link
+      href={`/product/${generateSlug(product)}`}
       className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-200 flex flex-col cursor-pointer group"
-      onClick={() => onView(product)}
+      style={{ textDecoration: "none" }}
     >
       {/* Image */}
       <div className="relative w-full aspect-square overflow-hidden bg-gray-50">
@@ -82,7 +85,7 @@ export default function ProductCard({ product, onAddToCart, onView }: ProductCar
 
           <button
             onClick={(e) => {
-              e.stopPropagation();
+              e.stopPropagation(); e.preventDefault();
               onAddToCart(product);
             }}
             disabled={product.stock === 0}
@@ -94,6 +97,6 @@ export default function ProductCard({ product, onAddToCart, onView }: ProductCar
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

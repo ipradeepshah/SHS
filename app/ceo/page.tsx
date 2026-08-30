@@ -69,6 +69,15 @@ const personSchema = {
         { "@type": "ListItem", "position": 2, "name": `${CEO_NAME} — CEO`, "item": `${SITE_URL}/ceo` },
       ],
     },
+    
+    // ProfilePage Schema
+    {
+      "@type": "ProfilePage",
+      "@id": `${SITE_URL}/ceo#profile`,
+      "url": `${SITE_URL}/ceo`,
+      "mainEntity": { "@id": `${SITE_URL}/ceo#pradeep-shah` },
+      "name": `${CEO_NAME} | ${CEO_TITLE}`
+    },
     // Person schema — key for Google Knowledge Panel. Kept identical to pradeepshah.com.np
     {
       "@type"        : "Person",

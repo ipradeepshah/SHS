@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getCart } from "@/lib/storage";
 import { ShoppingCart, Search, Menu, X, Wrench, Phone } from "lucide-react";
 import { STORE_NAME, STORE_PHONE, STORE_PHONE_RAW } from "@/lib/constants";
 import { CATEGORIES } from "@/lib/types";
@@ -12,8 +13,19 @@ interface NavbarProps {
   searchValue?: string;
 }
 
-export default function Navbar({ cartCount = 0, onSearch, searchValue = "" }: NavbarProps) {
+export default function Navbar({ cartCount: initialCartCount = 0, onSearch, searchValue = "" }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(initialCartCount);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setCartCount(getCart().reduce((acc, item) => acc + item.quantity, 0));
+    const handleCartUpdate = () => {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+    setCartCount(getCart().reduce((acc, item) => acc + item.quantity, 0));
+    };
+    window.addEventListener("cart-updated", handleCartUpdate);
+    return () => window.removeEventListener("cart-updated", handleCartUpdate);
+  }, []);
   const [localSearch, setLocalSearch] = useState(searchValue);
 
   const handleSearch = (e: React.FormEvent) => {
