@@ -26,14 +26,12 @@ export default function Footer() {
   ];
 
   return (
-    <footer style={{ background: "#0f2557", color: "#fff", marginTop: "48px" }}>
+    <footer style={{ background: "#002D5A", color: "#fff", marginTop: "48px" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "48px 24px 32px", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "36px" }}>
 
         {/* Brand */}
         <div>
-          <h3 style={{ color: "#ea6c00", fontWeight: 800, fontSize: "18px", marginBottom: "10px" }}>
-            {STORE_NAME}
-          </h3>
+          <img src="/logo.png" alt="Siyaram Hardware Logo" style={{ height: "48px", width: "auto", objectFit: "contain", marginBottom: "16px" }} />
           <p style={{ color: "#93c5fd", fontSize: "14px", lineHeight: 1.7, marginBottom: "16px" }}>
             Your trusted hardware partner for plumbing, paints, tools and all construction needs.
           </p>
@@ -99,15 +97,15 @@ export default function Footer() {
           </h4>
           <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
             <a href={`tel:${STORE_PHONE_RAW}`} style={{ display: "flex", alignItems: "flex-start", gap: "10px", color: "#93c5fd", textDecoration: "none", fontSize: "14px" }}>
-              <Phone size={15} style={{ marginTop: "2px", flexShrink: 0, color: "#ea6c00" }} />
+              <Phone size={15} style={{ marginTop: "2px", flexShrink: 0, color: "#FF6B00" }} />
               {STORE_PHONE}
             </a>
             <a href={STORE_SOCIALS.googleBusiness} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "flex-start", gap: "10px", color: "#93c5fd", textDecoration: "none", fontSize: "14px" }}>
-              <MapPin size={15} style={{ marginTop: "2px", flexShrink: 0, color: "#ea6c00" }} />
+              <MapPin size={15} style={{ marginTop: "2px", flexShrink: 0, color: "#FF6B00" }} />
               {STORE_ADDRESS}
             </a>
             <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", color: "#93c5fd", fontSize: "14px" }}>
-              <Clock size={15} style={{ marginTop: "2px", flexShrink: 0, color: "#ea6c00" }} />
+              <Clock size={15} style={{ marginTop: "2px", flexShrink: 0, color: "#FF6B00" }} />
               {STORE_HOURS}
             </div>
           </div>
