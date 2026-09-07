@@ -12,8 +12,8 @@ import {
 // ── Global Metadata (Next.js SEO API) ──────────────────────────
 export const metadata: Metadata = {
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
   verification: { google: "PYA2d_AJfPtC-AafEyM7K9_LQiQYjLeYNb14FKg-jWU" },
   metadataBase: new URL(SITE_URL),
