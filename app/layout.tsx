@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     },
   },
 
-  alternates: { canonical: SITE_URL },
+  alternates: { canonical: "/" },
 
   category: "hardware store",
 
