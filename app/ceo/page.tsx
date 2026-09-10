@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   CEO_NAME, CEO_TITLE, CEO_SHORT_TITLE, CEO_BIO, CEO_DESCRIPTION,
   CEO_SOCIALS, CEO_EMAIL, CEO_PERSONAL_SITE, CEO_ALTERNATE_NAMES,
@@ -207,22 +208,22 @@ export default function CEOPage() {
         <div style={{ maxWidth: "960px", margin: "0 auto", display: "flex", alignItems: "center", gap: "40px", flexWrap: "wrap", position: "relative", zIndex: 1 }}>
 
           {/* Avatar */}
-          <div style={{ flexShrink: 0 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+          <div style={{ flexShrink: 0, position: "relative", width: "140px", height: "140px" }}>
+            <Image
               itemProp="image"
               src="/pradeep-shah.jpg"
-  alt="Pradeep Shah — CEO of Siyaram Hardware & Suppliers"
-  style={{
-    width: "140px",
-    height: "140px",
-    borderRadius: "50%",
-    objectFit: "cover",
-    objectPosition: "center top",
-    border: "4px solid rgba(255,255,255,0.2)",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-  }}
-/>
+              alt={`${CEO_NAME} — CEO of ${STORE_NAME}`}
+              fill
+              priority
+              sizes="140px"
+              style={{
+                borderRadius: "50%",
+                objectFit: "cover",
+                objectPosition: "center top",
+                border: "4px solid rgba(255,255,255,0.2)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+              }}
+            />
           </div>
 
           {/* Info */}
