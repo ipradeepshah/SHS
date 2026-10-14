@@ -1,5 +1,5 @@
 "use client";
-import { STORE_NAME, STORE_ADDRESS } from "@/lib/constants";
+import { STORE_ADDRESS } from "@/lib/constants";
 
 interface HeroBannerProps {
   onShopPlumbing: () => void;
@@ -29,11 +29,10 @@ export default function HeroBanner({ onShopPlumbing, onShopPaints }: HeroBannerP
             Your Local Hardware Store · {STORE_ADDRESS}
           </p>
           <h1 style={{
-            fontSize: "clamp(16px, 5vw, 42px)", fontWeight: 800, color: "#fff",
-            lineHeight: 1.15, marginBottom: "14px", whiteSpace: "nowrap",
+            fontSize: "clamp(24px, 5vw, 42px)", fontWeight: 800, color: "#fff",
+            lineHeight: 1.15, marginBottom: "14px",
           }}>
-            {STORE_NAME.split("&")[0]}
-            <span style={{ color: "#ea6c00" }}>&amp; Suppliers</span>
+            Siyaram Hardware <span style={{ color: "#ea6c00" }}>&amp; Suppliers</span>
           </h1>
           <p style={{ color: "#bfdbfe", fontSize: "16px", lineHeight: 1.7, marginBottom: "28px", maxWidth: "520px" }}>
             Plumbing essentials, pipes, valves, paints for wood &amp; iron —

@@ -29,8 +29,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = `${product.name} - Siyaram Hardware & Suppliers (Sriram Hardware) | Birgunj, Nepal`;
-  const description = `Buy ${product.name} (Brand: ${product.brand || "Apex"}) at best wholesale & retail rate in Birgunj, Nepal. Genuine ${product.category} from Siyaram Hardware & Suppliers (Sriram Hardware), Nagawa Chowk. In stock: NPR ${product.price}. Call/WhatsApp: +977-9815256619.`;
+  const title = `${product.name} - Siya Ram Hardware and Suppliers | Birgunj, Nepal`;
+  const description = `Buy ${product.name} (Brand: ${product.brand || "Apex"}) at best fairprice wholesale & retail rate in Birgunj, Nepal. Genuine ${product.category} from Siya Ram Hardware and Suppliers (Siyaram Hardware & Suppliers), Nagawa Chowk. In stock: NPR ${product.price}. Call/WhatsApp: +977-9815256619.`;
   const canonicalUrl = `${SITE_URL}/product/${generateSlug(product)}`;
   const imageUrl = product.image
     ? product.image.startsWith("http")
@@ -47,13 +47,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       product.name,
       `${product.name} price Nepal`,
       `${product.name} Birgunj`,
-      `${product.name} Sriram Hardware`,
+      `${product.name} Siya Ram Hardware`,
       `${product.name} Siyaram Hardware`,
       `${product.brand} ${product.name}`,
       product.category,
-      "Sriram Hardware and Suppliers",
+      "Siya Ram Hardware and Suppliers",
       "Siyaram Hardware & Suppliers",
-      "hardware store Birgunj Nepal",
+      "hardware shop near me",
+      "plumber near me",
+      "hose pipe fittings near me",
+      "sanitary shop near me",
+      "fairprice hardware Birgunj",
       ...(product.tags || []),
     ].filter(Boolean),
     alternates: {
@@ -348,7 +352,7 @@ export default async function ProductPage({ params }: Props) {
               </div>
               <span style={{ color: "#cbd5e1" }}>•</span>
               <span style={{ fontSize: "13px", color: "#0284c7", fontWeight: 600 }}>
-                Supplier: Siyaram Hardware (Sriram Hardware)
+                Supplier: Siya Ram Hardware and Suppliers
               </span>
             </div>
 
@@ -528,7 +532,7 @@ export default async function ProductPage({ params }: Props) {
                       fontWeight: 500,
                     }}
                   >
-                    #SriramHardware
+                    #SiyaRamHardware
                   </span>
                   <span
                     style={{
@@ -571,7 +575,7 @@ export default async function ProductPage({ params }: Props) {
               Need Bulk Supply or Wholesale Price?
             </span>
             <h3 style={{ fontSize: "20px", fontWeight: 800, margin: "6px 0 8px" }}>
-              Siyaram Hardware & Suppliers (Sriram Hardware)
+              Siya Ram Hardware and Suppliers
             </h3>
             <p style={{ color: "#93c5fd", fontSize: "14px", margin: 0 }}>
               Supplying contractors, plumbers, and builders with genuine construction materials across Birgunj & Madhesh Province.

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import {
-  STORE_NAME, SITE_URL, SITE_DESCRIPTION,
+  STORE_NAME, STORE_ALTERNATE_NAMES, SITE_URL, SITE_DESCRIPTION,
   SITE_KEYWORDS, STORE_ADDRESS, STORE_CITY, STORE_REGION,
   STORE_COUNTRY_CODE, STORE_PHONE_RAW,
   STORE_HOURS_SCHEMA, CEO_NAME, CEO_TITLE, CEO_DESCRIPTION,
@@ -92,15 +92,7 @@ const organizationSchema = {
       "@id" : `${SITE_URL}/#website`,
       "url" : `${SITE_URL}/`,
       "name": STORE_NAME,
-      "alternateName": [
-        "Sriram Hardware and Suppliers",
-        "Sriram Hardware",
-        "Shriram Hardware and Suppliers",
-        "Shree Ram Hardware and Suppliers",
-        "Siyaram Hardware",
-        "Siyaram Hardware Birgunj",
-        "SHS"
-      ],
+      "alternateName": STORE_ALTERNATE_NAMES,
       "description": SITE_DESCRIPTION,
       "inLanguage": "en-US",
       "potentialAction": {
@@ -115,14 +107,7 @@ const organizationSchema = {
       "@id"      : `${SITE_URL}/#organization`,
       "name"     : STORE_NAME,
       "legalName": STORE_NAME,
-      "alternateName": [
-        "Sriram Hardware and Suppliers",
-        "Sriram Hardware",
-        "Shriram Hardware and Suppliers",
-        "Shree Ram Hardware and Suppliers",
-        "Siyaram Hardware",
-        "Siyaram Hardware Birgunj"
-      ],
+      "alternateName": STORE_ALTERNATE_NAMES,
       "url"      : SITE_URL,
       "logo"     : { "@type": "ImageObject", "url": `${SITE_URL}/logo.png`, "width": 512, "height": 512 },
       "image"    : `${SITE_URL}/og-image.jpg`,

@@ -23,10 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   );
 
   const categoryName = info ? info.name : rawCategory;
-  const title = `${categoryName} Supplies in Birgunj, Nepal | Siyaram Hardware & Suppliers (Sriram Hardware)`;
+  const title = `${categoryName} Supplies in Birgunj, Nepal | Siya Ram Hardware and Suppliers`;
   const description = info
     ? info.description
-    : `Explore genuine ${categoryName} at wholesale & retail prices in Birgunj, Nepal from Siyaram Hardware & Suppliers (Sriram Hardware), Nagawa Chowk. Call: ${STORE_PHONE}.`;
+    : `Explore genuine ${categoryName} at fairprice rates in Birgunj, Nepal from Siya Ram Hardware and Suppliers (Siyaram Hardware & Suppliers), Nagawa Chowk. Call: ${STORE_PHONE}.`;
   const canonicalUrl = `${SITE_URL}/category/${p.slug.toLowerCase()}`;
 
   return {
@@ -39,9 +39,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${categoryName} Birgunj`,
       `${categoryName} Nepal`,
       `${categoryName} wholesale Birgunj`,
+      "Siya Ram Hardware and Suppliers",
       "Siyaram Hardware & Suppliers",
-      "Sriram Hardware and Suppliers",
-      "hardware store Birgunj",
+      "hardware shop near me",
+      "plumber near me",
+      "sanitary shop near me",
+      "hose pipe fittings near me",
+      "fairprice hardware Birgunj",
       "Nagawa Chowk hardware",
     ],
     alternates: {

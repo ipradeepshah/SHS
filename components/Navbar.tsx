@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { getCart } from "@/lib/storage";
 import { ShoppingCart, Search, Phone, MapPin } from "lucide-react";
-import { STORE_PHONE, STORE_PHONE_RAW } from "@/lib/constants";
+import { STORE_NAME, STORE_PHONE, STORE_PHONE_RAW } from "@/lib/constants";
 import { CATEGORIES } from "@/lib/types";
 import { categoryToSlug } from "@/lib/utils";
 import NepaliClock from "@/components/NepaliClock";
@@ -86,12 +86,12 @@ export default function Navbar({
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
           <img
             src="/logo.png"
-            alt="Siyaram Hardware & Suppliers"
+            alt={STORE_NAME}
             style={{ height: "46px", width: "auto", objectFit: "contain" }}
           />
           <div className="hidden sm:flex flex-col">
             <span style={{ color: "#fff", fontWeight: 800, fontSize: "16px", lineHeight: 1.15 }}>
-              Siyaram Hardware & Suppliers
+              {STORE_NAME}
             </span>
             <span style={{ color: "#FF6B00", fontSize: "11px", fontWeight: 700, letterSpacing: "0.03em" }}>
               Birgunj, Nepal

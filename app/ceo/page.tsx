@@ -13,18 +13,19 @@ import {
 // ── Page Metadata ──────────────────────────────────────────────
 export const metadata: Metadata = {
   title: {
-    absolute: "Pradeep Shah - CEO - Sriram Hardware and Suppliers | Siyaram Hardware & Suppliers",
+    absolute: "Pradeep Shah - CEO - Siyaram Hardware & Suppliers | Siya Ram Hardware and Suppliers",
   },
-  description: "Official CEO Profile of Pradeep Shah — Chief Executive Officer and Founder of Sriram Hardware and Suppliers (Siyaram Hardware & Suppliers) at Nagawa Chowk, Birgunj, Nepal. Computer Engineer, entrepreneur, and founder.",
+  description: "Official CEO Profile of Pradeep Shah — Chief Executive Officer and Founder of Siyaram Hardware & Suppliers (Siya Ram Hardware and Suppliers) at Nagawa Chowk, Birgunj, Nepal. Computer Engineer, entrepreneur, and business leader.",
   keywords: [
     "Pradeep Shah",
-    "Pradeep Shah - CEO - Sriram Hardware and Suppliers",
-    "Sriram Hardware and Suppliers - CEO",
+    "Pradeep Shah - CEO - Siya Ram Hardware and Suppliers",
+    "Siya Ram Hardware and Suppliers - CEO",
     "Pradeep Shah CEO",
-    "Pradeep Shah Sriram Hardware",
+    "Pradeep Shah Siya Ram Hardware",
     "Pradeep Shah Siyaram Hardware",
-    "Sriram Hardware and Suppliers",
-    "Siyaram Hardware and Suppliers - CEO",
+    "Siya Ram Hardware and Suppliers",
+    "Siyaram Hardware & Suppliers",
+    "Siya Ram Hardware and Suppliers - CEO",
     "Pradeep Shah Birgunj",
     "Pradeep Shah Nepal",
     "Pradeep Shah Computer Engineer",
@@ -42,15 +43,15 @@ export const metadata: Metadata = {
   openGraph: {
     type       : "profile",
     url        : `${SITE_URL}/ceo`,
-    title      : "Pradeep Shah - CEO - Sriram Hardware and Suppliers | Siyaram Hardware & Suppliers",
-    description: "Official CEO Profile of Pradeep Shah — CEO & Founder of Sriram Hardware and Suppliers (Siyaram Hardware & Suppliers), Nagawa Chowk, Birgunj, Nepal.",
+    title      : "Pradeep Shah - CEO - Siya Ram Hardware and Suppliers | Siyaram Hardware & Suppliers",
+    description: "Official CEO Profile of Pradeep Shah — CEO & Founder of Siya Ram Hardware and Suppliers (Siyaram Hardware & Suppliers), Nagawa Chowk, Birgunj, Nepal.",
     firstName  : "Pradeep",
     lastName   : "Shah",
     images: [{
       url   : `${CEO_PERSONAL_SITE}/pradeep-shah.jpg`,
       width : 1200,
       height: 630,
-      alt   : `Pradeep Shah — CEO of Sriram Hardware and Suppliers`,
+      alt   : `Pradeep Shah — CEO of Siya Ram Hardware and Suppliers`,
     }],
   },
 
@@ -58,8 +59,8 @@ export const metadata: Metadata = {
     card       : "summary_large_image",
     site       : "@i_pradeepshah",
     creator    : "@i_pradeepshah",
-    title      : "Pradeep Shah - CEO - Sriram Hardware and Suppliers",
-    description: "Official profile of Pradeep Shah, CEO of Sriram Hardware and Suppliers (Siyaram Hardware & Suppliers), Birgunj, Nepal.",
+    title      : "Pradeep Shah - CEO - Siya Ram Hardware and Suppliers",
+    description: "Official profile of Pradeep Shah, CEO of Siya Ram Hardware and Suppliers (Siyaram Hardware & Suppliers), Birgunj, Nepal.",
     images     : [`${CEO_PERSONAL_SITE}/og-image.jpg`],
   },
 };
@@ -240,10 +241,10 @@ export default function CEOPage() {
               </span>
             </div>
             <h1 itemProp="name" style={{ fontSize: "clamp(28px, 4.5vw, 48px)", fontWeight: 800, color: "#fff", margin: "0 0 8px", lineHeight: 1.15 }}>
-              Pradeep Shah <span style={{ color: "#fb923c", fontWeight: 600, fontSize: "clamp(20px, 3vw, 32px)", display: "block", marginTop: "4px" }}>CEO — Sriram Hardware and Suppliers</span>
+              Pradeep Shah <span style={{ color: "#fb923c", fontWeight: 600, fontSize: "clamp(20px, 3vw, 32px)", display: "block", marginTop: "4px" }}>CEO — Siyaram Hardware &amp; Suppliers</span>
             </h1>
             <p style={{ color: "#93c5fd", fontSize: "15px", margin: "0 0 20px" }} itemProp="worksFor" itemScope itemType="https://schema.org/Organization">
-              <span itemProp="name">Siyaram Hardware & Suppliers</span> (also known as Sriram Hardware) · {STORE_ADDRESS}, Birgunj, Nepal
+              <span itemProp="name">Siyaram Hardware &amp; Suppliers</span> (Siya Ram Hardware and Suppliers) · {STORE_ADDRESS}, Birgunj, Nepal
             </p>
 
             {/* Social links — verified profiles */}

@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import { getProductsData, generateSlug } from "@/lib/server-data";
-import { SITE_URL, SITE_DESCRIPTION, SITE_KEYWORDS, STORE_NAME } from "@/lib/constants";
+import { SITE_URL, SITE_DESCRIPTION, SITE_KEYWORDS, STORE_NAME, STORE_ALTERNATE_NAMES } from "@/lib/constants";
 import HomePageClient from "@/components/HomePageClient";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Siyaram Hardware & Suppliers | Birgunj, Nepal",
+    absolute: `${STORE_NAME} | Birgunj, Nepal`,
   },
   description: SITE_DESCRIPTION,
   keywords: SITE_KEYWORDS,
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "Siyaram Hardware & Suppliers | Birgunj, Nepal",
+    title: `${STORE_NAME} | Birgunj, Nepal`,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: STORE_NAME,
@@ -43,15 +43,7 @@ export default async function HomePage() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: STORE_NAME,
-    alternateName: [
-      "Sriram Hardware and Suppliers",
-      "Sriram Hardware",
-      "Shriram Hardware and Suppliers",
-      "Shree Ram Hardware and Suppliers",
-      "Siyaram Hardware",
-      "Siyaram Hardware Birgunj",
-      "SHS",
-    ],
+    alternateName: STORE_ALTERNATE_NAMES,
     url: `${SITE_URL}/`,
   };
 
@@ -59,7 +51,7 @@ export default async function HomePage() {
   const homeProductsSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Featured Hardware Products at Siyaram Hardware & Suppliers",
+    name: `Featured Hardware Products at ${STORE_NAME}`,
     description: "Wholesale & retail PVC pipes, bends, valves, paints, primers, and tools in Birgunj, Nepal.",
     itemListElement: products.map((product, index) => ({
       "@type": "ListItem",
