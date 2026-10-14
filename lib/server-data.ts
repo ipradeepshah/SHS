@@ -154,7 +154,35 @@ export function getProductById(id: string): Product | undefined {
 
 
 
+import { categoryToSlug, slugToCategory } from "./utils";
+export { categoryToSlug, slugToCategory };
+
 export function getProductBySlug(slug: string): Product | undefined {
   const products = getProductsData();
-  return products.find(p => generateSlug(p) === slug || p.id === slug);
+  const decoded = decodeURIComponent(slug).toLowerCase().trim();
+  return products.find((p) => {
+    const canonicalSlug = generateSlug(p).toLowerCase();
+    if (canonicalSlug === decoded) return true;
+    if (p.id.toLowerCase() === decoded) return true;
+    if (decoded.endsWith(`-${p.id.toLowerCase()}`)) return true;
+    const nameSlug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
+    if (nameSlug === decoded) return true;
+    return false;
+  });
+}
+
+export function getProductsByCategory(categoryOrSlug: string): Product[] {
+  const products = getProductsData();
+  const targetCategory = slugToCategory(categoryOrSlug).toLowerCase();
+  const targetSlug = categoryOrSlug.toLowerCase();
+
+  return products.filter((p) => {
+    const pCat = p.category.toLowerCase();
+    const pSlug = categoryToSlug(p.category);
+    return (
+      pCat === targetCategory ||
+      pSlug === targetSlug ||
+      (p.tags && p.tags.some((t) => t.toLowerCase() === targetCategory || t.toLowerCase() === targetSlug))
+    );
+  });
 }

@@ -12,23 +12,29 @@ import {
 
 // ── Page Metadata ──────────────────────────────────────────────
 export const metadata: Metadata = {
-  title      : `${CEO_NAME} — ${CEO_SHORT_TITLE}, ${STORE_NAME}`,
-  description: CEO_DESCRIPTION,
-  keywords   : [
-    CEO_NAME,
-    `${CEO_NAME} CEO`,
-    `${CEO_NAME} Birgunj`,
-    `${CEO_NAME} hardware`,
-    `${CEO_NAME} Siyaram`,
+  title: {
+    absolute: "Pradeep Shah - CEO - Sriram Hardware and Suppliers | Siyaram Hardware & Suppliers",
+  },
+  description: "Official CEO Profile of Pradeep Shah — Chief Executive Officer and Founder of Sriram Hardware and Suppliers (Siyaram Hardware & Suppliers) at Nagawa Chowk, Birgunj, Nepal. Computer Engineer, entrepreneur, and founder.",
+  keywords: [
+    "Pradeep Shah",
+    "Pradeep Shah - CEO - Sriram Hardware and Suppliers",
+    "Sriram Hardware and Suppliers - CEO",
+    "Pradeep Shah CEO",
+    "Pradeep Shah Sriram Hardware",
+    "Pradeep Shah Siyaram Hardware",
+    "Sriram Hardware and Suppliers",
+    "Siyaram Hardware and Suppliers - CEO",
+    "Pradeep Shah Birgunj",
     "Pradeep Shah Nepal",
     "Pradeep Shah Computer Engineer",
-    "Pradeep Shah Standard ERP",
     "ipradeepshah",
     "i_pradeepshah",
     "CEO Siyaram Hardware",
     "Founder hardware store Birgunj",
     "Kurukshetra University alumni Nepal",
     "hardware entrepreneur Nepal",
+    "Standard ERP Nepal",
   ],
   authors   : [{ name: CEO_NAME, url: CEO_PERSONAL_SITE }],
   alternates: { canonical: `${SITE_URL}/ceo` },
@@ -36,15 +42,15 @@ export const metadata: Metadata = {
   openGraph: {
     type       : "profile",
     url        : `${SITE_URL}/ceo`,
-    title      : `${CEO_NAME} | ${CEO_SHORT_TITLE} — ${STORE_NAME}`,
-    description: CEO_DESCRIPTION,
+    title      : "Pradeep Shah - CEO - Sriram Hardware and Suppliers | Siyaram Hardware & Suppliers",
+    description: "Official CEO Profile of Pradeep Shah — CEO & Founder of Sriram Hardware and Suppliers (Siyaram Hardware & Suppliers), Nagawa Chowk, Birgunj, Nepal.",
     firstName  : "Pradeep",
     lastName   : "Shah",
     images: [{
       url   : `${CEO_PERSONAL_SITE}/pradeep-shah.jpg`,
       width : 1200,
       height: 630,
-      alt   : `${CEO_NAME} — CEO of ${STORE_NAME}`,
+      alt   : `Pradeep Shah — CEO of Sriram Hardware and Suppliers`,
     }],
   },
 
@@ -52,8 +58,8 @@ export const metadata: Metadata = {
     card       : "summary_large_image",
     site       : "@i_pradeepshah",
     creator    : "@i_pradeepshah",
-    title      : `${CEO_NAME} | CEO, ${STORE_NAME}`,
-    description: CEO_DESCRIPTION,
+    title      : "Pradeep Shah - CEO - Sriram Hardware and Suppliers",
+    description: "Official profile of Pradeep Shah, CEO of Sriram Hardware and Suppliers (Siyaram Hardware & Suppliers), Birgunj, Nepal.",
     images     : [`${CEO_PERSONAL_SITE}/og-image.jpg`],
   },
 };
@@ -228,14 +234,16 @@ export default function CEOPage() {
 
           {/* Info */}
           <div style={{ flex: 1, minWidth: "260px" }}>
-            <p itemProp="jobTitle" style={{ color: "#fb923c", fontSize: "13px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 8px" }}>
-              CEO · Founder · Computer Engineer
-            </p>
-            <h1 itemProp="name" style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, color: "#fff", margin: "0 0 6px", lineHeight: 1.1 }}>
-              {CEO_NAME}
+            <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "rgba(234, 108, 0, 0.25)", border: "1px solid #ea6c00", padding: "4px 12px", borderRadius: "20px", marginBottom: "10px" }}>
+              <span style={{ color: "#ffedd5", fontSize: "12px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                Executive Leadership
+              </span>
+            </div>
+            <h1 itemProp="name" style={{ fontSize: "clamp(28px, 4.5vw, 48px)", fontWeight: 800, color: "#fff", margin: "0 0 8px", lineHeight: 1.15 }}>
+              Pradeep Shah <span style={{ color: "#fb923c", fontWeight: 600, fontSize: "clamp(20px, 3vw, 32px)", display: "block", marginTop: "4px" }}>CEO — Sriram Hardware and Suppliers</span>
             </h1>
-            <p style={{ color: "#93c5fd", fontSize: "16px", margin: "0 0 20px" }} itemProp="worksFor" itemScope itemType="https://schema.org/Organization">
-              <span itemProp="name">{STORE_NAME}</span> · {STORE_ADDRESS}
+            <p style={{ color: "#93c5fd", fontSize: "15px", margin: "0 0 20px" }} itemProp="worksFor" itemScope itemType="https://schema.org/Organization">
+              <span itemProp="name">Siyaram Hardware & Suppliers</span> (also known as Sriram Hardware) · {STORE_ADDRESS}, Birgunj, Nepal
             </p>
 
             {/* Social links — verified profiles */}

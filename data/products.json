@@ -148,5 +148,50 @@
     "id": "1787832866442",
     "createdAt": "2026-08-27T12:14:26.442Z",
     "updatedAt": "2026-08-27T12:14:26.442Z"
+  },
+  {
+    "id": "1787832866443",
+    "name": "110 mm PVC Bend 90 Degree (Band)",
+    "description": "Heavy-duty 110 mm 90-degree PVC Bend (Band) for drainage, soil waste, and plumbing pipelines. Leak-proof, high impact resistance, smooth inner walls preventing clogs. Perfectly fits all standard 110 mm (4 inch) PVC pipes in residential and commercial plumbing.",
+    "price": 140,
+    "mrp": 180,
+    "category": "Pipes & Fittings",
+    "brand": "Apex",
+    "unit": "Piece",
+    "stock": 150,
+    "image": "/uploads/1787832611526-6m2rve.jpeg",
+    "tags": [
+      "110 mm band",
+      "PVC bend",
+      "110 mm PVC band",
+      "PVC Pipe",
+      "Apex",
+      "Plumbing",
+      "Pipes & Fittings"
+    ],
+    "createdAt": "2026-09-01T10:00:00.000Z",
+    "updatedAt": "2026-09-01T10:00:00.000Z"
+  },
+  {
+    "id": "1787832866444",
+    "name": "Ceramic Wash Basin 18x12 White Glaze",
+    "description": "Premium glossy ceramic wall-hung wash basin with smooth stain-resistant finish. Ideal for modern bathrooms, dining areas, and commercial washrooms. Easy to clean, anti-bacterial glaze, standard tap hole fitting.",
+    "price": 1450,
+    "mrp": 1800,
+    "category": "Ceramic & Sanitary",
+    "brand": "Hindware",
+    "unit": "Piece",
+    "stock": 40,
+    "image": "",
+    "tags": [
+      "ceramic",
+      "wash basin",
+      "sanitary",
+      "ceramic basin",
+      "bathroom",
+      "sanitaryware"
+    ],
+    "createdAt": "2026-09-01T10:00:00.000Z",
+    "updatedAt": "2026-09-01T10:00:00.000Z"
   }
 ]

@@ -8,11 +8,13 @@ interface Category {
 
 const FEATURED_CATEGORIES: Category[] = [
   { name: "Plumbing",          icon: "💧", color: "#0ea5e9" },
+  { name: "Ceramic & Sanitary",icon: "🛁", color: "#0284c7" },
   { name: "Pipes & Fittings",  icon: "🔧", color: "#0f2557" },
   { name: "Paint - Wood",      icon: "🪵", color: "#a16207" },
   { name: "Paint - Iron",      icon: "🔩", color: "#7c3aed" },
   { name: "Valves & Taps",     icon: "🚰", color: "#0891b2" },
   { name: "Tools",             icon: "🔨", color: "#b45309" },
+  { name: "Suppliers & Wholesale", icon: "🏗️", color: "#ea6c00" },
   { name: "Fasteners & Screws",icon: "⚙️", color: "#15803d" },
   { name: "General Hardware",  icon: "📦", color: "#6b7280" },
 ];

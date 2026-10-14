@@ -5,6 +5,14 @@
 
 // ── Store Info ──────────────────────────────────────────────
 export const STORE_NAME       = "Siyaram Hardware & Suppliers";
+export const STORE_ALTERNATE_NAMES = [
+  "Sriram Hardware and Suppliers",
+  "Sriram Hardware",
+  "Shriram Hardware and Suppliers",
+  "Shree Ram Hardware and Suppliers",
+  "Siyaram Hardware",
+  "Siyaram Hardware Birgunj",
+];
 export const STORE_TAGLINE    = "Your Trusted Hardware Partner in Birgunj";
 export const STORE_ADDRESS    = "Nagawa Chowk, Birgunj";
 export const STORE_CITY       = "Birgunj";
@@ -74,10 +82,18 @@ export const STORE_SOCIALS = {
 // ── Website / SEO ────────────────────────────────────────────
 export const SITE_URL         = "https://www.siyaramhardware.com.np";   // ← update when you get a domain
 export const SITE_DESCRIPTION = "Siyaram Hardware & Suppliers at Nagawa Chowk, Birgunj, Nepal — your trusted source for plumbing, pipes, valves, wood & iron paints, tools and general hardware. Founded and led by Pradeep Shah, Computer Engineer and CEO.";
+export const CEO_PAGE_TITLE  = "Pradeep Shah - CEO - Sriram Hardware and Suppliers | Siyaram Hardware & Suppliers";
+
 export const SITE_KEYWORDS    = [
   "Siyaram Hardware Birgunj",
+  "Sriram Hardware and Suppliers",
+  "Sriram Hardware Birgunj",
+  "Sriram Hardware and Suppliers - CEO",
+  "Pradeep Shah - CEO - Sriram Hardware and Suppliers",
+  "Pradeep Shah - CEO - Siyaram Hardware & Suppliers",
   "hardware store Birgunj Nepal",
   "plumbing supplies Birgunj",
+  "ceramic sanitaryware Birgunj",
   "pipes and fittings Nepal",
   "valves taps Birgunj",
   "wood paint Birgunj",
@@ -87,6 +103,9 @@ export const SITE_KEYWORDS    = [
   "Pradeep Shah Nepal",
   "Best hardware shop in Birgunj",
   "CPVC pipes Birgunj",
+  "PVC pipes Nepal",
+  "110 mm PVC pipe Birgunj",
+  "110 mm PVC bend band Nepal",
   "Hardware wholesale Nepal",
   "Building materials Nepal",
   "Paints and plumbing Birgunj",

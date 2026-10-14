@@ -15,6 +15,12 @@ export const metadata: Metadata = {
     icon: "/favicon.png",
     apple: "/favicon.png",
   },
+  applicationName: STORE_NAME,
+  appleWebApp: {
+    title: STORE_NAME,
+    capable: true,
+    statusBarStyle: "default",
+  },
   verification: { google: "PYA2d_AJfPtC-AafEyM7K9_LQiQYjLeYNb14FKg-jWU" },
   metadataBase: new URL(SITE_URL),
 
@@ -62,8 +68,6 @@ export const metadata: Metadata = {
     },
   },
 
-  alternates: { canonical: "/" },
-
   category: "hardware store",
 
   other: {
@@ -82,12 +86,21 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@graph": [
-    // WebSite schema with SearchAction (helps Google Sitelinks Search Box)
+    // WebSite schema for Google Site Names (Google Search Central compliant)
     {
       "@type": "WebSite",
       "@id" : `${SITE_URL}/#website`,
-      "url" : SITE_URL,
+      "url" : `${SITE_URL}/`,
       "name": STORE_NAME,
+      "alternateName": [
+        "Sriram Hardware and Suppliers",
+        "Sriram Hardware",
+        "Shriram Hardware and Suppliers",
+        "Shree Ram Hardware and Suppliers",
+        "Siyaram Hardware",
+        "Siyaram Hardware Birgunj",
+        "SHS"
+      ],
       "description": SITE_DESCRIPTION,
       "inLanguage": "en-US",
       "potentialAction": {
@@ -102,6 +115,14 @@ const organizationSchema = {
       "@id"      : `${SITE_URL}/#organization`,
       "name"     : STORE_NAME,
       "legalName": STORE_NAME,
+      "alternateName": [
+        "Sriram Hardware and Suppliers",
+        "Sriram Hardware",
+        "Shriram Hardware and Suppliers",
+        "Shree Ram Hardware and Suppliers",
+        "Siyaram Hardware",
+        "Siyaram Hardware Birgunj"
+      ],
       "url"      : SITE_URL,
       "logo"     : { "@type": "ImageObject", "url": `${SITE_URL}/logo.png`, "width": 512, "height": 512 },
       "image"    : `${SITE_URL}/og-image.jpg`,

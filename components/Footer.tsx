@@ -8,14 +8,16 @@ import {
 
 export default function Footer() {
   const quickLinks = [
-    { label: "Plumbing",         href: "/?category=Plumbing" },
-    { label: "Pipes & Fittings", href: "/?category=Pipes+%26+Fittings" },
-    { label: "Valves & Taps",    href: "/?category=Valves+%26+Taps" },
-    { label: "Paint – Wood",     href: "/?category=Paint+-+Wood" },
-    { label: "Paint – Iron",     href: "/?category=Paint+-+Iron" },
-    { label: "Tools",            href: "/?category=Tools" },
-    { label: "General Hardware", href: "/?category=General+Hardware" },
-    { label: "About CEO",        href: "/ceo" },
+    { label: "Plumbing Supplies",         href: "/category/plumbing" },
+    { label: "Ceramic & Sanitaryware",    href: "/category/ceramic-sanitary" },
+    { label: "Pipes & Fittings (PVC)",   href: "/category/pipes-fittings" },
+    { label: "Valves & Taps",             href: "/category/valves-taps" },
+    { label: "Paint – Wood",              href: "/category/paint-wood" },
+    { label: "Paint – Iron",              href: "/category/paint-iron" },
+    { label: "Tools & Equipment",         href: "/category/tools" },
+    { label: "General Hardware",          href: "/category/general-hardware" },
+    { label: "Suppliers & Wholesale",     href: "/category/suppliers" },
+    { label: "CEO: Pradeep Shah",         href: "/ceo" },
   ];
 
   const socialLinks = [

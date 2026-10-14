@@ -1,168 +1,85 @@
-"use client";
-import { useState, useEffect, Suspense } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { Metadata } from "next";
+import { getProductsData, generateSlug } from "@/lib/server-data";
+import { SITE_URL, SITE_DESCRIPTION, SITE_KEYWORDS, STORE_NAME } from "@/lib/constants";
+import HomePageClient from "@/components/HomePageClient";
 
-// ── Components ──
-import Navbar        from "@/components/Navbar";
-import HeroBanner    from "@/components/HeroBanner";
-import CategoryGrid  from "@/components/CategoryGrid";
-import FilterBar     from "@/components/FilterBar";
-import ProductCard   from "@/components/ProductCard";
-import Footer        from "@/components/Footer";
-import Toast         from "@/components/Toast";
+export const metadata: Metadata = {
+  title: {
+    absolute: "Siyaram Hardware & Suppliers | Birgunj, Nepal",
+  },
+  description: SITE_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  alternates: {
+    canonical: SITE_URL,
+  },
+  openGraph: {
+    type: "website",
+    title: "Siyaram Hardware & Suppliers | Birgunj, Nepal",
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: STORE_NAME,
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: `${STORE_NAME} - Nagawa Chowk, Birgunj, Nepal`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${STORE_NAME} | Birgunj, Nepal`,
+    description: SITE_DESCRIPTION,
+    images: [`${SITE_URL}/og-image.jpg`],
+  },
+};
 
-// ── Data / Types ──
-import { Product }              from "@/lib/types";
-import { fetchProducts, getCart, addToCart } from "@/lib/storage";
+export default async function HomePage() {
+  const products = getProductsData();
 
-// ─────────────────────────────────────────────
-function HomeContent() {
-  const searchParams = useSearchParams();
-  const router       = useRouter();
+  // Standalone Google Site Name Schema (developers.google.com/search/docs/appearance/site-names)
+  const siteNameSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: STORE_NAME,
+    alternateName: [
+      "Sriram Hardware and Suppliers",
+      "Sriram Hardware",
+      "Shriram Hardware and Suppliers",
+      "Shree Ram Hardware and Suppliers",
+      "Siyaram Hardware",
+      "Siyaram Hardware Birgunj",
+      "SHS",
+    ],
+    url: `${SITE_URL}/`,
+  };
 
-  const [products, setProducts]           = useState<Product[]>([]);
-  const [cartCount, setCartCount]         = useState(0);
-  
-  const [toast, setToast]                 = useState("");
-  const [searchQuery, setSearchQuery]     = useState(searchParams.get("q") || "");
-  const [activeCategory, setActiveCategory] = useState(searchParams.get("category") || "");
-  const [sortBy, setSortBy]               = useState("default");
-  const [maxPrice, setMaxPrice]           = useState(10000);
-
-  // Load products & cart on mount
-  useEffect(() => {
-    fetchProducts().then((data) => {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setProducts(data);
-    });
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setCartCount(getCart().reduce((s, i) => s + i.quantity, 0));
-  }, []);
-
-  // Sync URL params → state
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setActiveCategory(searchParams.get("category") || "");
-    setSearchQuery(searchParams.get("q") || "");
-  }, [searchParams]);
-
-  // ── Handlers ──
-  function handleSearch(q: string) {
-    setSearchQuery(q);
-    router.push(q ? `/?q=${encodeURIComponent(q)}` : "/");
-  }
-
-  function handleAddToCart(product: Product) {
-    addToCart(product);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setCartCount(getCart().reduce((s, i) => s + i.quantity, 0));
-    setToast(`${product.name} added to cart!`);
-  }
-
-  function handleClearFilters() {
-    setActiveCategory("");
-    setSearchQuery("");
-    router.push("/");
-  }
-
-  // ── Filter + Sort ──
-  const filtered = products.filter((p) => {
-    const q = searchQuery.toLowerCase();
-    const matchSearch = !q
-      || p.name.toLowerCase().includes(q)
-      || p.description.toLowerCase().includes(q)
-      || p.tags.some((t) => t.toLowerCase().includes(q))
-      || p.category.toLowerCase().includes(q)
-      || p.brand.toLowerCase().includes(q);
-    const matchCat   = !activeCategory || p.category === activeCategory;
-    const matchPrice = p.price <= maxPrice;
-    return matchSearch && matchCat && matchPrice;
-  });
-
-  if (sortBy === "price_asc")  filtered.sort((a, b) => a.price - b.price);
-  if (sortBy === "price_desc") filtered.sort((a, b) => b.price - a.price);
-  if (sortBy === "name")       filtered.sort((a, b) => a.name.localeCompare(b.name));
-
-  const showHero = !searchQuery && !activeCategory;
+  // Structured ItemList of products for Googlebot on homepage
+  const homeProductsSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Featured Hardware Products at Siyaram Hardware & Suppliers",
+    description: "Wholesale & retail PVC pipes, bends, valves, paints, primers, and tools in Birgunj, Nepal.",
+    itemListElement: products.map((product, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `${SITE_URL}/product/${generateSlug(product)}`,
+      name: product.name,
+    })),
+  };
 
   return (
-    <div style={{ minHeight: "100vh", background: "#f9fafb" }}>
-
-      {/* ── Navbar ── */}
-      <Navbar
-        cartCount={cartCount}
-        onSearch={handleSearch}
-        searchValue={searchQuery}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNameSchema) }}
       />
-
-      {/* ── Hero (homepage only) ── */}
-      {showHero && (
-        <HeroBanner
-          onShopPlumbing={() => setActiveCategory("Plumbing")}
-          onShopPaints={() => setActiveCategory("Paint - Wood")}
-        />
-      )}
-
-      {/* ── Main content ── */}
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "28px 16px" }}>
-
-        {/* ── Category grid (homepage only) ── */}
-        {showHero && (
-          <CategoryGrid onSelect={setActiveCategory} />
-        )}
-
-        {/* ── Filter & sort bar ── */}
-        <FilterBar
-          activeCategory={activeCategory}
-          sortBy={sortBy}
-          maxPrice={maxPrice}
-          totalCount={products.length}
-          filteredCount={filtered.length}
-          searchQuery={searchQuery}
-          onCategoryChange={setActiveCategory}
-          onSortChange={setSortBy}
-          onMaxPriceChange={setMaxPrice}
-          onClearFilters={handleClearFilters}
-        />
-
-        {/* ── Product grid ── */}
-        {filtered.length === 0 ? (
-          <div style={{ textAlign: "center", padding: "80px 0", color: "#9ca3af" }}>
-            <div style={{ fontSize: "64px", marginBottom: "16px" }}>📦</div>
-            <p style={{ fontSize: "20px", fontWeight: 600, marginBottom: "8px" }}>No products found</p>
-            <p style={{ fontSize: "14px" }}>Try a different search or category</p>
-          </div>
-        ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: "16px" }}>
-            {filtered.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onAddToCart={handleAddToCart}
-                
-              />
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* ── Footer ── */}
-      <Footer />
-
-      {toast && <Toast message={toast} onClose={() => setToast("")} />}
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────
-export default function HomePage() {
-  return (
-    <Suspense fallback={
-      <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        Loading…
-      </div>
-    }>
-      <HomeContent />
-    </Suspense>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeProductsSchema) }}
+      />
+      <HomePageClient initialProducts={products} />
+    </>
   );
 }
