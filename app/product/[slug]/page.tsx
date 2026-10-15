@@ -8,7 +8,7 @@ import {
   categoryToSlug,
   getProductsByCategory,
 } from "@/lib/server-data";
-import { SITE_URL, STORE_NAME, STORE_PHONE, STORE_PHONE_RAW, whatsappLink } from "@/lib/constants";
+import { SITE_URL, STORE_NAME, STORE_PHONE, STORE_PHONE_RAW, whatsappLink, FREE_DELIVERY_THRESHOLD } from "@/lib/constants";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AddToCartClient from "./AddToCartClient";
@@ -221,14 +221,14 @@ export default async function ProductPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <main style={{ flex: 1, maxWidth: "1200px", margin: "0 auto", padding: "30px 20px 60px", width: "100%" }}>
+      <main className="flex-1 max-w-7xl mx-auto px-2.5 sm:px-4 md:px-6 py-4 sm:py-8 w-full">
         {/* Breadcrumb Navigation */}
         <nav
           aria-label="Breadcrumb"
           style={{
             fontSize: "13px",
             color: "#64748b",
-            marginBottom: "20px",
+            marginBottom: "16px",
             display: "flex",
             gap: "8px",
             alignItems: "center",
@@ -254,28 +254,28 @@ export default async function ProductPage({ params }: Props) {
           style={{
             background: "#fff",
             borderRadius: "16px",
-            padding: "36px",
+            padding: "clamp(16px, 3.5vw, 36px)",
             border: "1px solid #e2e8f0",
             boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
             display: "flex",
             flexWrap: "wrap",
-            gap: "40px",
-            marginBottom: "48px",
+            gap: "32px",
+            marginBottom: "40px",
           }}
         >
           {/* Image Column */}
           <div
             style={{
-              flex: "1 1 380px",
+              flex: "1 1 320px",
               background: "#f8fafc",
               borderRadius: "14px",
-              minHeight: "380px",
+              minHeight: "260px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               overflow: "hidden",
               border: "1px solid #f1f5f9",
-              padding: "20px",
+              padding: "16px",
             }}
           >
             {product.image ? (
@@ -437,6 +437,32 @@ export default async function ProductPage({ params }: Props) {
               </div>
             </div>
 
+            {/* Delivery Policy Note */}
+            <div
+              style={{
+                background: "#f0fdf4",
+                border: "1px solid #bbf7d0",
+                borderRadius: "12px",
+                padding: "14px 16px",
+                marginBottom: "24px",
+                display: "flex",
+                gap: "12px",
+                alignItems: "flex-start",
+              }}
+            >
+              <Truck size={22} color="#15803d" style={{ flexShrink: 0, marginTop: "2px" }} />
+              <div>
+                <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#166534", margin: "0 0 3px" }}>
+                  Delivery Policy
+                </h4>
+                <p style={{ fontSize: "13px", color: "#15803d", margin: 0, lineHeight: 1.5 }}>
+                  <strong>FREE Delivery:</strong> On orders above <strong>₹{FREE_DELIVERY_THRESHOLD.toLocaleString("en-IN")}</strong> across Birgunj &amp; surrounding areas.
+                  <br />
+                  <strong>Under ₹{FREE_DELIVERY_THRESHOLD.toLocaleString("en-IN")}:</strong> Nominal delivery charges apply based on area / location distance and are confirmed with you on WhatsApp.
+                </p>
+              </div>
+            </div>
+
             {/* Description */}
             <div style={{ marginBottom: "24px" }}>
               <h2 style={{ fontSize: "16px", fontWeight: 700, color: "#1e293b", marginBottom: "8px" }}>
@@ -488,7 +514,7 @@ export default async function ProductPage({ params }: Props) {
             >
               <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "#475569" }}>
                 <Truck size={16} color="#ea6c00" />
-                <span>Fast Delivery in Birgunj</span>
+                <span>Free Delivery &gt; ₹50K</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "#475569" }}>
                 <ShieldCheck size={16} color="#ea6c00" />

@@ -36,7 +36,7 @@ export default function CategoryGrid({ onSelect }: CategoryGridProps) {
           Explore All Categories →
         </span>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))", gap: "12px" }}>
+      <div className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-10 gap-2 sm:gap-3">
         {FEATURED_CATEGORIES.map((cat) => {
           const href = `/category/${categoryToSlug(cat.name)}`;
           return (
@@ -51,31 +51,16 @@ export default function CategoryGrid({ onSelect }: CategoryGridProps) {
                   }
                 }
               }}
-              style={{
-                display: "flex", flexDirection: "column", alignItems: "center", gap: "8px",
-                padding: "14px 8px", background: "#fff", borderRadius: "14px",
-                border: "1px solid #f1f5f9", cursor: "pointer",
-                transition: "box-shadow 0.2s, transform 0.15s",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(0,0,0,0.1)";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.boxShadow = "none";
-                (e.currentTarget as HTMLElement).style.transform = "none";
-              }}
+              className="flex flex-col items-center gap-1.5 p-2 sm:p-2.5 bg-white rounded-xl border border-slate-100 hover:border-slate-300 hover:shadow-xs transition-all duration-150 cursor-pointer text-center group"
+              style={{ textDecoration: "none" }}
             >
-              <div style={{
-                width: "52px", height: "52px", borderRadius: "50%",
-                background: cat.color + "18",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "26px",
-              }}>
+              <div
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl group-hover:scale-105 transition-transform"
+                style={{ background: cat.color + "18" }}
+              >
                 {cat.icon}
               </div>
-              <span style={{ fontSize: "11px", color: "#4b5563", textAlign: "center", fontWeight: 600, lineHeight: 1.3 }}>
+              <span className="text-[10px] sm:text-xs text-slate-700 font-semibold leading-tight line-clamp-2">
                 {cat.name}
               </span>
             </Link>

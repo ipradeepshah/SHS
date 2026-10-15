@@ -33,6 +33,11 @@ export const STORE_HOURS      = "Mon–Sat: 8am – 8pm (Open Today)";
 export const STORE_HOURS_SCHEMA = "Mo-Sa 08:00-20:00";
 export const STORE_EMAIL      = "siyaramhardwaresuppliers@gmail.com";
 
+// ── Delivery Policy ───────────────────────────────────────────
+export const FREE_DELIVERY_THRESHOLD = 50000; // Free delivery over ₹50,000
+export const DELIVERY_POLICY_NOTE =
+  "FREE delivery across Birgunj & Parsa on orders above ₹50,000. For orders below ₹50,000, nominal delivery charges apply based on location and are confirmed directly via WhatsApp.";
+
 // ── CEO / Founder ────────────────────────────────────────────
 export const CEO_NAME         = "Pradeep Shah";
 export const CEO_FIRST_NAME   = "Pradeep";

@@ -4,8 +4,9 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Toast from "@/components/Toast";
 import { CartItem } from "@/lib/types";
-import { getCart, updateCartQty, removeFromCart, clearCart, cartTotal } from "@/lib/storage";
-import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft, MessageCircle } from "lucide-react";
+import { getCart, updateCartQty, removeFromCart, cartTotal } from "@/lib/storage";
+import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft, MessageCircle, Truck, CheckCircle2 } from "lucide-react";
+import { FREE_DELIVERY_THRESHOLD, STORE_PHONE_RAW } from "@/lib/constants";
 
 export default function CartPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -33,6 +34,7 @@ export default function CartPage() {
 
   const total = cartTotal(cart);
   const itemCount = cart.reduce((s, i) => s + i.quantity, 0);
+  const isFreeDelivery = total >= FREE_DELIVERY_THRESHOLD;
 
   const buildWhatsAppMessage = () => {
     const lines = cart.map((i) => `• ${i.product.name} x${i.quantity} = ₹${(i.product.price * i.quantity).toLocaleString("en-IN")}`);
@@ -43,17 +45,18 @@ export default function CartPage() {
       ``,
       ...lines,
       ``,
-      `*Total: ₹${total.toLocaleString("en-IN")}*`,
+      `*Subtotal: ₹${total.toLocaleString("en-IN")}*`,
+      `*Delivery: ${isFreeDelivery ? "FREE Delivery (Order above ₹50,000)" : "Area delivery charge to be discussed & confirmed"}*`,
       ``,
       name ? `Name: ${name}` : "",
       phone ? `Phone: ${phone}` : "",
-      address ? `Address: ${address}` : "",
+      address ? `Address / Location: ${address}` : "",
     ].filter((l) => l !== undefined).join("\n");
   };
 
   const handleWhatsApp = () => {
     const msg = buildWhatsAppMessage();
-    window.open(`https://wa.me/9779815256619?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(`https://wa.me/${STORE_PHONE_RAW}?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   if (cart.length === 0) {
@@ -135,14 +138,36 @@ export default function CartPage() {
               ))}
             </div>
 
-            <div style={{ borderTop: "1px solid #f1f5f9", paddingTop: "12px", display: "flex", justifyContent: "space-between", fontWeight: 700, fontSize: "18px", color: "#0f2557", marginBottom: "20px" }}>
-              <span>Total</span>
+            <div style={{ borderTop: "1px solid #f1f5f9", paddingTop: "12px", display: "flex", justifyContent: "space-between", fontSize: "14px", color: "#4b5563", marginBottom: "8px" }}>
+              <span>Subtotal</span>
+              <span style={{ fontWeight: 600 }}>₹{total.toLocaleString("en-IN")}</span>
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", color: isFreeDelivery ? "#16a34a" : "#ea6c00", marginBottom: "16px" }}>
+              <span>Delivery</span>
+              <span style={{ fontWeight: 600 }}>
+                {isFreeDelivery ? "FREE (Order > ₹50,000)" : "Area-based (On WhatsApp)"}
+              </span>
+            </div>
+
+            <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: "12px", display: "flex", justifyContent: "space-between", fontWeight: 800, fontSize: "19px", color: "#0f2557", marginBottom: "16px" }}>
+              <span>Estimated Total</span>
               <span>₹{total.toLocaleString("en-IN")}</span>
             </div>
 
-            {total < 999 && (
-              <div style={{ background: "#fff7ed", border: "1px solid #fed7aa", borderRadius: "8px", padding: "10px 12px", fontSize: "13px", color: "#c2410c", marginBottom: "16px" }}>
-                Add ₹{(999 - total).toLocaleString("en-IN")} more for free delivery!
+            {isFreeDelivery ? (
+              <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: "10px", padding: "12px 14px", fontSize: "13px", color: "#15803d", marginBottom: "16px", display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                <CheckCircle2 size={18} style={{ flexShrink: 0, marginTop: "1px" }} />
+                <div>
+                  <strong>FREE Delivery Applied!</strong> Your order qualifies for free delivery across Birgunj & surrounding areas.
+                </div>
+              </div>
+            ) : (
+              <div style={{ background: "#fff7ed", border: "1px solid #fed7aa", borderRadius: "10px", padding: "12px 14px", fontSize: "13px", color: "#c2410c", marginBottom: "16px", display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                <Truck size={18} style={{ flexShrink: 0, marginTop: "1px" }} />
+                <div>
+                  <strong>Free Delivery above ₹50,000!</strong> Add ₹{(FREE_DELIVERY_THRESHOLD - total).toLocaleString("en-IN")} more to get FREE delivery. For orders under ₹50,000, nominal delivery charges apply based on your location/area and will be confirmed with you on WhatsApp.
+                </div>
               </div>
             )}
 

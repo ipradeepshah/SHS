@@ -111,7 +111,7 @@ function HomeContent({ initialProducts }: HomePageClientProps) {
       )}
 
       {/* ── Main content ── */}
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "28px 16px" }}>
+      <div className="max-w-7xl mx-auto px-2.5 sm:px-4 md:px-6 py-4 sm:py-6">
         {/* ── Category grid (homepage only) ── */}
         {showHero && <CategoryGrid onSelect={setActiveCategory} />}
 
@@ -129,7 +129,7 @@ function HomeContent({ initialProducts }: HomePageClientProps) {
           onClearFilters={handleClearFilters}
         />
 
-        {/* ── Product grid with SEO Links ── */}
+        {/* ── Product grid (Flipkart / Amazon 2-column mobile layout) ── */}
         {filtered.length === 0 ? (
           <div style={{ textAlign: "center", padding: "80px 0", color: "#9ca3af" }}>
             <div style={{ fontSize: "64px", marginBottom: "16px" }}>📦</div>
@@ -137,7 +137,7 @@ function HomeContent({ initialProducts }: HomePageClientProps) {
             <p style={{ fontSize: "14px" }}>Try a different search or category</p>
           </div>
         ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "20px" }}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3.5 md:gap-4">
             {filtered.map((product) => (
               <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />
             ))}
@@ -148,10 +148,10 @@ function HomeContent({ initialProducts }: HomePageClientProps) {
         {showHero && (
           <div
             style={{
-              marginTop: "56px",
+              marginTop: "48px",
               background: "#fff",
               borderRadius: "16px",
-              padding: "32px 24px",
+              padding: "28px 20px",
               border: "1px solid #e5e7eb",
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
@@ -164,10 +164,10 @@ function HomeContent({ initialProducts }: HomePageClientProps) {
               </div>
               <div>
                 <h4 style={{ fontSize: "15px", fontWeight: 700, color: "#1e293b", margin: "0 0 4px" }}>
-                  Delivery Across Birgunj
+                  Free Delivery Over ₹50,000
                 </h4>
                 <p style={{ fontSize: "13px", color: "#64748b", margin: 0, lineHeight: 1.5 }}>
-                  Fast local delivery to contractors, construction sites, and homes.
+                  Orders above ₹50,000 get FREE delivery in Birgunj. Below ₹50,000, nominal area charges confirmed on WhatsApp.
                 </p>
               </div>
             </div>
