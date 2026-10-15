@@ -14,7 +14,10 @@ import Toast from "@/components/Toast";
 // ── Data / Types ──
 import { Product } from "@/lib/types";
 import { getCart, addToCart } from "@/lib/storage";
-import { ShieldCheck, Truck, Award, Phone } from "lucide-react";
+import { ShieldCheck, Truck, Award, Phone, ChevronDown } from "lucide-react";
+
+const INITIAL_VISIBLE_COUNT = 12;
+const LOAD_MORE_COUNT = 12;
 
 interface HomePageClientProps {
   initialProducts: Product[];
@@ -24,8 +27,9 @@ function HomeContent({ initialProducts }: HomePageClientProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [products] = useState<Product[]>(initialProducts);
   const [cartCount, setCartCount] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
 
   const [toast, setToast] = useState("");
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
@@ -50,11 +54,19 @@ function HomeContent({ initialProducts }: HomePageClientProps) {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveCategory(searchParams.get("category") || "");
     setSearchQuery(searchParams.get("q") || "");
+    setVisibleCount(INITIAL_VISIBLE_COUNT);
   }, [searchParams]);
+
+  // Reset pagination when activeCategory, searchQuery, sortBy, or maxPrice changes
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setVisibleCount(INITIAL_VISIBLE_COUNT);
+  }, [activeCategory, searchQuery, sortBy, maxPrice]);
 
   // ── Handlers ──
   function handleSearch(q: string) {
     setSearchQuery(q);
+    setVisibleCount(INITIAL_VISIBLE_COUNT);
     router.push(q ? `/?q=${encodeURIComponent(q)}` : "/");
   }
 
@@ -68,6 +80,7 @@ function HomeContent({ initialProducts }: HomePageClientProps) {
   function handleClearFilters() {
     setActiveCategory("");
     setSearchQuery("");
+    setVisibleCount(INITIAL_VISIBLE_COUNT);
     router.push("/");
   }
 
@@ -91,6 +104,14 @@ function HomeContent({ initialProducts }: HomePageClientProps) {
   if (sortBy === "name") filtered.sort((a, b) => a.name.localeCompare(b.name));
 
   const showHero = !searchQuery && !activeCategory;
+
+  // Pagination calculations (limits visible products to 12 initially, and loads in batches)
+  const displayedProducts = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
+  const remainingCount = filtered.length - visibleCount;
+  const progressPercent = filtered.length > 0
+    ? Math.min(100, Math.round((displayedProducts.length / filtered.length) * 100))
+    : 100;
 
   return (
     <div style={{ minHeight: "100vh", background: "#f9fafb" }}>
@@ -137,11 +158,57 @@ function HomeContent({ initialProducts }: HomePageClientProps) {
             <p style={{ fontSize: "14px" }}>Try a different search or category</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3.5 md:gap-4">
-            {filtered.map((product) => (
-              <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3.5 md:gap-4">
+              {displayedProducts.map((product) => (
+                <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />
+              ))}
+            </div>
+
+            {/* ── See More Items Pagination Controller ── */}
+            {hasMore && (
+              <div className="mt-8 mb-4 flex flex-col items-center justify-center">
+                {/* Progress counter & bar */}
+                <div className="text-center mb-3">
+                  <p className="text-xs sm:text-sm text-slate-500 font-medium">
+                    Showing <span className="font-bold text-slate-900">{displayedProducts.length}</span> of{" "}
+                    <span className="font-bold text-slate-900">{filtered.length}</span> products
+                  </p>
+                  <div className="w-48 sm:w-64 h-1.5 bg-slate-200 rounded-full mx-auto mt-2 overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-[#ea6c00] to-[#f97316] rounded-full transition-all duration-300"
+                      style={{ width: `${progressPercent}%` }}
+                    />
+                  </div>
+                </div>
+
+                {/* See More Items button */}
+                <button
+                  type="button"
+                  onClick={() => setVisibleCount((prev) => prev + LOAD_MORE_COUNT)}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#0f2557] hover:bg-[#1a3a7e] active:scale-95 text-white font-bold text-sm sm:text-base rounded-xl shadow-sm hover:shadow-md transition-all duration-150 cursor-pointer border border-[#0f2557]"
+                  aria-label="See more hardware products"
+                >
+                  <span>See More Items</span>
+                  <span className="text-xs font-normal opacity-90 bg-white/20 px-2 py-0.5 rounded-full">
+                    +{Math.min(LOAD_MORE_COUNT, remainingCount)} more
+                  </span>
+                  <ChevronDown size={18} />
+                </button>
+              </div>
+            )}
+
+            {!hasMore && filtered.length > INITIAL_VISIBLE_COUNT && (
+              <div className="mt-8 mb-2 text-center py-3.5 px-4 bg-slate-100 border border-slate-200/80 rounded-xl max-w-md mx-auto">
+                <p className="text-xs sm:text-sm text-slate-700 font-semibold">
+                  ✓ You’ve viewed all {filtered.length} products
+                </p>
+                <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5">
+                  Looking for additional hardware sizes or bulk supply? Check our store details below.
+                </p>
+              </div>
+            )}
+          </>
         )}
 
         {/* ── Trust Features Strip ── */}
